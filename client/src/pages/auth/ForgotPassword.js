@@ -6,6 +6,11 @@ import { useSelector } from "react-redux";
 const ForgotPassword = ({ history }) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { user } = useSelector((state) => ({ ...state }));
+
+  useEffect(() => {
+    if (user && user.token) history.push("/");
+  }, [user]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
